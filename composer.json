@@ -1,0 +1,31 @@
+{
+    "name": "dspacelabs/feature",
+    "description": "Feature Toggle library",
+    "keywords": ["feature toggle"],
+    "license": "MIT",
+    "homepage": "https://github.com/dSpaceLabs/Feature",
+    "authors": [
+        {
+            "name": "Joshua Estes",
+            "homepage": "http://joshuaestes.me"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/dSpaceLabs/Feature/issues",
+        "source": "https://github.com/dSpaceLabs/Feature",
+        "docs": "https://github.com/dSpaceLabs/Feature",
+        "irc": "irc://irc.freenode.org/dspacelabs"
+    },
+    "require": {},
+    "autoload": {
+        "psr-4": { "Dspacelabs\\Component\\Feature\\": "src/" }
+    },
+    "autoload-dev": {
+        "psr-4": { "Dspacelabs\\Component\\Feature\\Tests\\": "tests/" }
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "0.1.x-dev"
+        }
+    }
+}
