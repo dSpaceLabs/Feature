@@ -13,6 +13,8 @@ use Ruler\Variable;
  */
 class FeatureTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     */
     public function test_feature()
     {
         $rule = new Rule(

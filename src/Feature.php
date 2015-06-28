@@ -32,6 +32,7 @@ class Feature implements FeatureInterface
     public function __construct($name, Rule $rule = null)
     {
         $this->name = $name;
+
         if (null !== $rule) {
             $this->setRule($rule);
         }
@@ -42,6 +43,14 @@ class Feature implements FeatureInterface
      */
     public function isEnabled()
     {
+        if (null === $this->rule) {
+            throw new FeatureException('No Rule has been set');
+        }
+
+        if (null === $this->context) {
+            throw new FeatureException('No Context has been set');
+        }
+
         return $this->rule->evaluate($this->context);
     }
 
