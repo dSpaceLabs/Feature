@@ -1,0 +1,4 @@
+/docs/coverage/
+/logs/
+/vendor/
+composer.lock
