@@ -57,6 +57,14 @@ class Feature implements FeatureInterface
     /**
      * {@inheritDoc}
      */
+    public function isDisabled()
+    {
+        return !$this->isEnabled();
+    }
+
+    /**
+     * {@inheritDoc}
+     */
     public function getName()
     {
         return $this->name;

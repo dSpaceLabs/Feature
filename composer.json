@@ -20,8 +20,13 @@
         "ruler/ruler": "~0.3"
     },
     "require-dev": {
+        "doctrine/dbal": "~2.5",
         "phpunit/phpunit": "~4.7",
         "mockery/mockery": "~1.0@dev"
+    },
+    "suggest": {
+        "doctrine/dbal": "To use the DoctrineDbalDriver",
+        "twig/twig": "Allow using features in twig templates"
     },
     "autoload": {
         "psr-4": { "Dspacelabs\\Component\\Feature\\": "src/" }

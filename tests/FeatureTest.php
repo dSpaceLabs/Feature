@@ -18,10 +18,7 @@ class FeatureTest extends \PHPUnit_Framework_TestCase
     public function test_feature()
     {
         $rule = new Rule(
-            new \Ruler\Operator\SetContains(
-                new Variable('admin.users'),
-                new Variable('user.username')
-            )
+            new \Ruler\Operator\SetContains(new Variable('admin.users'), new Variable('user.username'))
         );
         $feature = new Feature('test.feature', $rule);
         $context = new Context(array(
@@ -29,7 +26,16 @@ class FeatureTest extends \PHPUnit_Framework_TestCase
             'user.username' => 'joshua', // $user->getUsername()
         ));
         $feature->setContext($context);
+        $this->assertTrue($feature->isEnabled());
 
+        $rule = new Rule(
+            new \Ruler\Operator\SetContains(new Variable('admin.usernames', array('joshua')), new Variable('username'))
+        );
+        $feature = new Feature('test.feature', $rule);
+        $context = new Context(array(
+            'username' => 'joshua', // $user->getUsername()
+        ));
+        $feature->setContext($context);
         $this->assertTrue($feature->isEnabled());
     }
 }

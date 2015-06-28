@@ -11,12 +11,22 @@ use Ruler\Rule;
 interface FeatureInterface
 {
     /**
+     * Evaluate the rules with the given context
+     *
      * @return boolean
      */
     public function isEnabled();
 
     /**
+     * @return boolean
+     */
+    public function isDisabled();
+
+    /**
      * Returns the name of the feature
+     *
+     * The name of the feature MUST be unique and should only be an
+     * alphanumeric string. It MAY contain periods as well.
      *
      * @return string
      */

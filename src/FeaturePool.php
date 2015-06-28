@@ -2,21 +2,30 @@
 
 namespace Dspacelabs\Component\Feature;
 
+use Dspacelabs\Component\Feature\Driver\DriverInterface;
+
 /**
  */
 class FeaturePool implements FeaturePoolInterface
 {
     /**
-     * @var array
+     * @var DriverInterface
      */
-    protected $pool;
+    protected $driver;
+
+    /**
+     */
+    public function __construct(DriverInterface $driver)
+    {
+        $this->driver = $driver;
+    }
 
     /**
      * {@inheritDoc}
      */
     public function add(FeatureInterface $feature)
     {
-        $this->pool[$feature->getName()] = $feature;
+        $this->driver->save($feature);
     }
 
     /**
@@ -24,8 +33,6 @@ class FeaturePool implements FeaturePoolInterface
      */
     public function get($name)
     {
-        if (isset($this->pool[$name])) {
-            return $this->pool[$name];
-        }
+        $feature = $this->driver->retrieve($name);
     }
 }
