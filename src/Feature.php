@@ -3,7 +3,7 @@
 namespace Dspacelabs\Component\Feature;
 
 use Ruler\Context;
-use Ruler\Rule;
+use Ruler\Proposition;
 
 /**
  * Feature
@@ -29,7 +29,7 @@ class Feature implements FeatureInterface
      * @param string $name
      * @param Rule   $rule
      */
-    public function __construct($name, Rule $rule = null)
+    public function __construct($name, Proposition $rule = null)
     {
         $this->name = $name;
 
@@ -48,7 +48,7 @@ class Feature implements FeatureInterface
         }
 
         if (null === $this->context) {
-            throw new FeatureException('No Context has been set');
+            $this->context = new Context();
         }
 
         return $this->rule->evaluate($this->context);
@@ -73,7 +73,7 @@ class Feature implements FeatureInterface
     /**
      * {@inheritDoc}
      */
-    public function setRule(Rule $rule)
+    public function setRule(Proposition $rule)
     {
         $this->rule = $rule;
     }

@@ -3,7 +3,7 @@
 namespace Dspacelabs\Component\Feature;
 
 use Ruler\Context;
-use Ruler\Rule;
+use Ruler\Proposition;
 
 /**
  * Feature
@@ -11,14 +11,20 @@ use Ruler\Rule;
 interface FeatureInterface
 {
     /**
-     * Evaluate the rules with the given context
+     * Evaluate rules and returns the evaluation
      *
+     * @throws FeatureException
+     *   If a rule is not set for the feature, a FeatureException
+     *   is thrown
      * @return boolean
      */
     public function isEnabled();
 
     /**
-     * @return boolean
+     * Evaluates the rules and returns true if the feature
+     * is disabled, this returns the opposite of isEnabled
+     *
+     * @see FeatureInterface::isEnabled
      */
     public function isDisabled();
 
@@ -35,9 +41,9 @@ interface FeatureInterface
     /**
      * Adds rule to the set of rules to evaluate
      *
-     * @param \Ruler\Rule $rule
+     * @param \Ruler\Proposition $rule
      */
-    public function setRule(Rule $rule);
+    public function setRule(Proposition $rule);
 
     /**
      * @param \Ruler\Context $context

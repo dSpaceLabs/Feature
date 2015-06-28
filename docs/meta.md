@@ -2,7 +2,7 @@ Meta
 ====
 
 - Every feature must have a unique name
-  - Unique name MUST only contain `[0-9A-Za-z.]`
+  - Unique name MUST only contain `[0-9A-Za-z._-]`
 - Every feature must have one or more rules
 - Every rule a feature has must evaluate to true or false
 
@@ -63,6 +63,9 @@ Using a framework such as symfony2
 
 ```php
 $feature = $container->get('feature.pool')->getFeature('awesome.feature');
+$ruleBuilder = $container->get('feature.rule_builder');
+$feature = $container->get('feature.awesome_feature');
+$feature->isEnabled();
 ```
 
 Using simple features, such as an on/off
@@ -71,4 +74,50 @@ Using simple features, such as an on/off
 $feature = new SimpleFeature('display.foo');
 $feature->setEnabled(true);
 $feature->isEnabled(); // returns true
+```
+What format does features and rules need to be stored in?
+
+- Features have a unique name
+- Features have a collection of 0 to n Rules
+
+```javascript
+// Feature Object in javascript
+{
+    name: 'awesome.feature',
+    rule: {
+        operand: {
+            type: 'logicalAnd',
+            operands: [
+                {
+                    type: 'LessThanOrEqualTo',
+                    operands: [
+                        {name: 'minNumPeople'},
+                        {name: 'actualNumPeople'}
+                    ]
+                },
+                {
+                    type: 'GreaterThanOrEqualTo',
+                    operands: [
+                        {name: 'maxNumPeople'},
+                        {name: 'actualNumPeople'}
+                    ]
+                }
+            ]
+        }
+    }
+}
+// Variable Object
+{
+    name: null,
+    value: null
+}
+// Operator Object
+// Reads as `minNumPeople lessThanOrEaualTo actucalNumPeople`
+{
+    type: 'LessThanOrEqualTo',
+    operands: [
+        {name: 'minNumPeople'},
+        {name: 'actualNumPeople'}
+    ]
+}
 ```
